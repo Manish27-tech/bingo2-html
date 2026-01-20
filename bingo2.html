@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+
+<style>
+:root {
+  --bg-color: #f4f6f9;
+  --card-color: #ffffff;
+  --text-color: #222;
+  --accent: #4f46e5;
+}
+
+[data-theme="dark"] {
+  --bg-color: #0f172a;
+  --card-color: #1e293b;
+  --text-color: #f8fafc;
+  --accent: #22d3ee;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* GRID LAYOUT */
+.dashboard {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  grid-template-rows: 60px 1fr 40px;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main"
+    "sidebar footer";
+  height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  grid-area: sidebar;
+  background: var(--card-color);
+  padding: 20px;
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+  color: var(--accent);
+}
+
+.sidebar a {
+  display: block;
+  margin: 12px 0;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+/* HEADER */
+.header {
+  grid-area: header;
+  background: var(--card-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+/* MAIN */
+.main {
+  grid-area: main;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--card-color);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* FOOTER */
+.footer {
+  grid-area: footer;
+  background: var(--card-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+/* BUTTON */
+button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: var(--accent);
+  color: white;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px auto 1fr 40px;
+    grid-template-areas:
+      "header"
+      "sidebar"
+      "main"
+      "footer";
+  }
+}
+</style>
+</head>
+
+<body data-theme="light">
+
+<div class="dashboard">
+
+  <aside class="sidebar">
+    <h2>Admin</h2>
+    <a href="#">Dashboard</a>
+    <a href="#">Users</a>
+    <a href="#">Reports</a>
+    <a href="#">Settings</a>
+  </aside>
+
+  <header class="header">
+    <h3>Admin Dashboard</h3>
+    <button onclick="toggleTheme()">Toggle Theme</button>
+  </header>
+
+  <main class="main">
+    <div class="card">
+      <h4>Users</h4>
+      <p>1,240</p>
+    </div>
+    <div class="card">
+      <h4>Revenue</h4>
+      <p>$18,560</p>
+    </div>
+    <div class="card">
+      <h4>Orders</h4>
+      <p>320</p>
+    </div>
+    <div class="card">
+      <h4>Feedback</h4>
+      <p>85%</p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    © 2026 Admin Panel
+  </footer>
+
+</div>
+
+<script>
+function toggleTheme() {
+  const body = document.body;
+  body.dataset.theme = body.dataset.theme === "light" ? "dark" : "light";
+}
+</script>
+
+</body>
+</html>
